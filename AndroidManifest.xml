@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cfc.needblood"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- GCM requires a Google account. -->
+ <!--     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> -->
+
+    <!-- Keeps the processor from sleeping when a message is received. -->
+ <!--    <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
+
+    <!-- Custom permission so only this app can receive its own message -->
+ <!--    <permission
+        android:name="com.cfc.needblood.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" /> -->
+
+ <!--    <uses-permission android:name="com.cfc.needblood.permission.C2D_MESSAGE" /> -->
+
+    <!-- This app has permission to register and receive data message. -->
+  <!--   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> -->
+
+    <application
+        android:name=".NeedBloodApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+
+        <activity
+            android:name="com.cfc.needblood.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- All Activity -->
+        <activity
+            android:name=".PostRegister"
+            android:label="Post Register" >
+        </activity>
+
+        <activity
+            android:name=".HomePage"
+            android:label="Home Page" >
+        </activity>
+
+        <activity
+            android:name=".EventDetails"
+            android:label="Event Details" >
+        </activity>
+        
+        <activity
+            android:name=".About"
+            android:label="About" >
+        </activity>
+        
+        <activity
+            android:name=".DonationGuidelines"
+            android:label="Donation Guidelines" >
+        </activity>
+        
+        <activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".LoginUsingLoginFragmentActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/applicationId" />
+
+        <!--
+        	BroadcastReceiver that will receive intents from GCM and 
+        	handle them to our IntentService.
+        	
+        	com.google.android.c2dm.permission.SEND is needed so only
+        	GCM can send messages for the app, not other apps.
+        -->
+  <!--       <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>  -->
+
+                <!-- Receives the actual messages. -->
+   <!--               <action android:name="com.google.android.c2dm.intent.RECEIVE" />  -->
+                <!-- Receives the registration id. -->
+   <!--               <action android:name="com.google.android.c2dm.intent.REGISTRATION" />  
+
+                <category android:name="com.cfc.needblood" />
+            </intent-filter>
+        </receiver>  -->
+        
+        <!--
+          Application-specific subclass of GCMBaseIntentService that will
+          handle received messages.
+
+          By default, it must be named .GCMIntentService, unless the
+          application uses a custom BroadcastReceiver that redefines its name.
+        -->
+ <!--       <service android:name=".GCMIntentService" /> -->
+
+    </application>
+
+</manifest>
