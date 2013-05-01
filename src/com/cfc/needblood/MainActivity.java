@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
         
 		Log.d(TAG, "onCreate");
-        
+		
         setContentView(R.layout.main);
         buttonLoginLogout = (Button)findViewById(R.id.buttonLoginLogout);
         buttonHome = (Button)findViewById(R.id.button_goto_homepage);

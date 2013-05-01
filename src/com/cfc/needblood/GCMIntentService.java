@@ -47,7 +47,9 @@ public class GCMIntentService extends GCMBaseIntentService {
 		Log.i(TAG, "Device registered: regId = " + registrationId);
 
 		// Update our database with the registration ID
-		ServerUtilities.register(context, registrationId);
+		String fbId = ((NeedBloodApplication)getApplication()).getUserID();
+		String bloodType = ((NeedBloodApplication)getApplication()).getBloodType();
+		ServerUtilities.register(context, registrationId, fbId, bloodType);
 	}
 
 	@Override
@@ -114,7 +116,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 				.setLargeIcon(
 						BitmapFactory.decodeResource(context.getResources(), R.drawable.bd_icon))
 				.setTicker(message).setWhen(when).setAutoCancel(true)
-				.setContentTitle(context.getString(R.string.app_title))
+				.setContentTitle(context.getString(R.string.app_name))
 				.setContentText(context.getString(R.string.notification_message));
 
 		Notification notification = builder.build();

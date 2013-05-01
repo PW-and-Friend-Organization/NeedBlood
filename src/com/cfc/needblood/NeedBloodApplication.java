@@ -8,9 +8,10 @@ import android.net.NetworkInfo;
 public class NeedBloodApplication extends Application{
 	
 	// user
-	private String user_id;
-	private String user_name;
-	private String blood_type;
+	private String user_id = "";
+	private String user_name = "";
+	private String blood_type = "";
+	private int push_notification = 1;	// Enable/Disable push notification
 	
 	public void ClearAll()
 	{
@@ -45,6 +46,13 @@ public class NeedBloodApplication extends Application{
 		this.blood_type = blood_type;
 	}
 	
+	public int getPushNotification() {
+		return push_notification;
+	}
+
+	public void setPushNotification(int push_notification) {
+		this.push_notification = push_notification;
+	}
 	
 	// Event
 	private String event_id;
@@ -63,4 +71,5 @@ public class NeedBloodApplication extends Application{
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
+
 }

@@ -13,7 +13,7 @@ public final class CommonUtilities {
 	 * Note: this string is used as below.
 	 * String serverUrl = SERVER_URL + "/register.php"; 
 	 */
-	static final String SERVER_URL = "http://192.168.1.4/GCM";
+	static final String SERVER_URL = "http://reducespam.org/bd";
 
 	/**
 	 * Google API project id registered to use GCM. Currently using Alvin's
