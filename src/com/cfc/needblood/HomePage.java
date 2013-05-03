@@ -137,7 +137,7 @@ public class HomePage extends Activity {
 									updatePushNotifPref(1);
 								else
 									updatePushNotifPref(0);
-								return null;
+								return null; 
 							}
 
 							@Override
@@ -206,6 +206,8 @@ public class HomePage extends Activity {
 	 * */
 	class LoadAllEvents extends AsyncTask<String, String, String> {
 
+		private int error = 0;
+
 		/**
 		 * Before starting background thread Show Progress Dialog
 		 * */
@@ -235,24 +237,24 @@ public class HomePage extends Activity {
 					.toString(mDay)));
 			Log.d("All Events: ", params.toString());
 
-			// getting JSON string from URL
-			JSONObject json = jParser.makeHttpRequest(url_all_events, "GET",
-					params);
-
-			// Check your log cat for JSON reponse
-			Log.d("All Events: ", json.toString());
-
 			try {
+				// getting JSON string from URL
+				JSONObject json = jParser.makeHttpRequest(url_all_events, "GET",
+						params);
+	
+				// Check your log cat for JSON reponse
+				Log.d("All Events: ", json.toString());
+			
 				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
+
+				// Hashmap for ListView, clear a new set of data
+				eventsList = new ArrayList<HashMap<String, String>>();
 
 				if (success == 1) {
 					// products found
 					// Getting Array of Products
 					events = json.getJSONArray(TAG_EVENT);
-
-					// Hashmap for ListView, clear a new set of data
-					eventsList = new ArrayList<HashMap<String, String>>();
 
 					// looping through All Products
 					for (int i = 0; i < events.length(); i++) {
@@ -287,7 +289,10 @@ public class HomePage extends Activity {
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
-			}
+			} catch ( Exception anyError) {
+				error = 1;
+				return null;
+            }
 
 			return null;
 		}
@@ -299,11 +304,17 @@ public class HomePage extends Activity {
 			// dismiss the dialog after getting all products
 			pDialog.dismiss();
 
+			if( error == 1)
+			{
+				Toast.makeText(HomePage.this, "Fail to load events", Toast.LENGTH_LONG).show();
+				return;
+			}
+			
 			if (eventsList.size() == 0) {
 				Toast.makeText(HomePage.this,
 						"Our server have not update for the selected date",
 						Toast.LENGTH_LONG).show();
-
+				return;
 			}
 
 			// updating UI from Background Thread
